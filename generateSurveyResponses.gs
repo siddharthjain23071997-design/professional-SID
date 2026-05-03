@@ -174,7 +174,7 @@ function submitRow_(form, likertItems, scores) {
 
 // ──────────────────────────────────────────────────────────────
 // SECTION 6 — BATCH ENGINE
-// Each batch handles 60 responses (~2–3 min) to stay well
+// Each batch handles 20 responses (~40–60 s) to stay well
 // under the 6-minute Apps Script execution limit.
 // ──────────────────────────────────────────────────────────────
 
@@ -210,27 +210,38 @@ function runBatch_(start, end) {
 }
 
 // ──────────────────────────────────────────────────────────────
-// SECTION 7 — BATCH ENTRY POINTS
+// SECTION 7 — BATCH ENTRY POINTS  (15 batches × 20 responses)
 // Run each function individually from the Apps Script editor.
+// Wait for the previous batch to finish before starting the next.
 // ──────────────────────────────────────────────────────────────
 
-function batch_01_to_60()   { runBatch_(1,   60);  }
-function batch_61_to_120()  { runBatch_(61,  120); }
-function batch_121_to_180() { runBatch_(121, 180); }
-function batch_181_to_240() { runBatch_(181, 240); }
-function batch_241_to_300() { runBatch_(241, 300); }
+function batch_001_to_020() { runBatch_(  1,  20); }
+function batch_021_to_040() { runBatch_( 21,  40); }
+function batch_041_to_060() { runBatch_( 41,  60); }
+function batch_061_to_080() { runBatch_( 61,  80); }
+function batch_081_to_100() { runBatch_( 81, 100); }
+function batch_101_to_120() { runBatch_(101, 120); }
+function batch_121_to_140() { runBatch_(121, 140); }
+function batch_141_to_160() { runBatch_(141, 160); }
+function batch_161_to_180() { runBatch_(161, 180); }
+function batch_181_to_200() { runBatch_(181, 200); }
+function batch_201_to_220() { runBatch_(201, 220); }
+function batch_221_to_240() { runBatch_(221, 240); }
+function batch_241_to_260() { runBatch_(241, 260); }
+function batch_261_to_280() { runBatch_(261, 280); }
+function batch_281_to_300() { runBatch_(281, 300); }
 
 // ──────────────────────────────────────────────────────────────
 // SECTION 8 — FULL RUN (use only if execution time allows)
-// Safer to run each batch_XX_to_XX function individually.
+// Safer to run each batch_XXX_to_XXX function individually.
 // ──────────────────────────────────────────────────────────────
 
 function generateAll300() {
-  batch_01_to_60();
-  batch_61_to_120();
-  batch_121_to_180();
-  batch_181_to_240();
-  batch_241_to_300();
+  batch_001_to_020(); batch_021_to_040(); batch_041_to_060();
+  batch_061_to_080(); batch_081_to_100(); batch_101_to_120();
+  batch_121_to_140(); batch_141_to_160(); batch_161_to_180();
+  batch_181_to_200(); batch_201_to_220(); batch_221_to_240();
+  batch_241_to_260(); batch_261_to_280(); batch_281_to_300();
   Logger.log('✓ All 300 responses submitted.');
 }
 
@@ -355,12 +366,22 @@ function diagnosticSummary() {
 //    Check the Logs. Scores should span 1–7, means near 4–5 overall,
 //    with low respondents near 2 and high respondents near 6.
 //
-//  STEP 2 — Submit batches one at a time (~2-3 min each):
-//    Run:  batch_01_to_60()
-//    Run:  batch_61_to_120()
-//    Run:  batch_121_to_180()
-//    Run:  batch_181_to_240()
-//    Run:  batch_241_to_300()
+//  STEP 2 — Submit batches one at a time (~40-60 s each):
+//    Run:  batch_001_to_020()
+//    Run:  batch_021_to_040()
+//    Run:  batch_041_to_060()
+//    Run:  batch_061_to_080()
+//    Run:  batch_081_to_100()
+//    Run:  batch_101_to_120()
+//    Run:  batch_121_to_140()
+//    Run:  batch_141_to_160()
+//    Run:  batch_161_to_180()
+//    Run:  batch_181_to_200()
+//    Run:  batch_201_to_220()
+//    Run:  batch_221_to_240()
+//    Run:  batch_241_to_260()
+//    Run:  batch_261_to_280()
+//    Run:  batch_281_to_300()
 //
 //  STEP 3 — Verify:
 //    Run:  diagnosticSummary()
